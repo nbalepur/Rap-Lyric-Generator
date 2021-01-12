@@ -9,7 +9,6 @@ import torch.nn as nn
 import torch.nn.functional as Functional
 from torch import jit
 import random
-import language_check as Language
 from better_profanity import profanity as Profanity
 import json
 import numpy as np
@@ -92,25 +91,15 @@ model.load_state_dict(torch.load("data/models/model1.pt"))
 # load the swear words to censor
 Profanity.load_censor_words()
 
-# create a tool for language checking
-lang_tool = Language.LanguageTool('en-US')
-
 def get_lyric(start_text, censor, num_words, use_random):
 
     global model
-    global lang_tool
 
     # generate the text
-    generated_text = generate(model, num_words, start_text.lower(), use_random)
-    
-    # find all grammatial errors
-    errors = lang_tool.check(generated_text)
-    
-    # create the corrected text
-    corrected_text = Language.correct(generated_text, errors)
-    
+    generated_text = generate(model, num_words, start_text.lower(), use_random).title()
+
     # censors the word if necessary
-    return Profanity.censor(corrected_text) if censor else corrected_text
+    return Profanity.censor(generated_text) if censor else generated_text
 
 def generate(model, num_words, start_text, use_random):
     
