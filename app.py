@@ -166,7 +166,7 @@ def predict(model, tkn, hidden_layer, use_random):
     # return word and the hidden state
     return idx_to_word[str(selected_index)], hidden
 
-@app.route('/generate', methods = ["POST"])
+@app.route("/generate", methods = ["POST"])
 def generate_lyric():
 
     start_text = request.json["start_text"]
@@ -175,3 +175,7 @@ def generate_lyric():
     use_random = request.json["use_random"]
 
     return get_lyric(start_text, censor, num_words, use_random)
+
+@app.route("/test")
+def hello():
+    return "Hello, World!"
