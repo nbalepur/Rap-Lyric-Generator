@@ -164,7 +164,3 @@ def generate_lyric():
     use_random = request.json["use_random"]
 
     return get_lyric(start_text, censor, num_words, use_random)
-
-@app.route("/test")
-def hello():
-    return "Hello, World!"
