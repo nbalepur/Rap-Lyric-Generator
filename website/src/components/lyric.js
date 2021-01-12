@@ -11,7 +11,11 @@ class Lyric extends Component {
       <Row justify="middle">
         <Col md={2}></Col>
         <Col md={4}>
-          <img src={Kanye} style={{ width: 200, height: 200 }}></img>
+          <img
+            alt="kanye"
+            src={Kanye}
+            style={{ width: 200, height: 200 }}
+          ></img>
         </Col>
         <Col md={1}></Col>
         <Col

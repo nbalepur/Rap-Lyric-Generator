@@ -7,18 +7,40 @@ import Loading from "./components/loading.js";
 import Lyric from "./components/lyric.js";
 import Error from "./components/error.js";
 
+import axios from "axios";
+
 class App extends Component {
   state = {
-    lyrics: "Kanye Kanye Kanye Kanye Kanye Kanye Kanye Kanye Kanye Kanye",
+    lyrics: "",
     numWords: 10,
     componentState: "begin",
   };
 
   handleAPI = () => {
     let startText = document.getElementById("start-text").value.trim();
+
+    if (startText.length === 0) {
+      alert("Please fill out the field 'Starting Text' before generating");
+      return;
+    }
+
+    this.setState({ componentState: "loading" });
+
     let numWords = this.state.numWords;
     let censor = document.getElementById("censor").checked;
     let randomize = document.getElementById("randomize").checked;
+
+    let obj = {
+      start_text: startText,
+      censor: censor,
+      num_words: numWords,
+      use_random: randomize,
+    };
+
+    axios.post("http://127.0.0.1:5000/generate", obj).then((response) => {
+      this.setState({ componentState: "lyrics" });
+      this.setState({ lyrics: response.data });
+    });
   };
 
   getComponentFromState = () => {
@@ -31,7 +53,7 @@ class App extends Component {
       return <Loading />;
     }
     if (compState === "lyrics") {
-      return <Lyric />;
+      return <Lyric lyric={this.state.lyrics} />;
     }
     if (compState === "error") {
       return <Error />;
@@ -51,7 +73,7 @@ class App extends Component {
         <div>
           <br></br>
           <br></br>
-          <Error />
+          {this.getComponentFromState()}
         </div>
         <br></br>
         <br></br>
