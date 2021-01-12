@@ -84,13 +84,24 @@ class LyricLSTM(nn.Module):
         # return the hidden layer
         return hidden
 
+# load the model
 model = LyricLSTM(num_hidden, num_layers, embed_size, drop_prob, lr)
 model.load_state_dict(torch.load("./data/models/model.pt"))
+model.eval()
 
-def get_lyric(start_text, censor, num_words):
+# load the swear words to censor
+Profanity.load_censor_words()
+
+# create a tool for language checking
+lang_tool = Language.LanguageTool('en-US')
+
+def get_lyric(start_text, censor, num_words, use_random):
+
+    global model
+    global lang_tool
 
     # generate the text
-    generated_text = generate(model, num_words, start_text.lower())
+    generated_text = generate(model, num_words, start_text.lower(), use_random)
     
     # find all grammatial errors
     errors = lang_tool.check(generated_text)
@@ -101,7 +112,7 @@ def get_lyric(start_text, censor, num_words):
     # censors the word if necessary
     return Profanity.censor(corrected_text) if censor else corrected_text
 
-def generate(model, num_words, start_text):
+def generate(model, num_words, start_text, use_random):
     
     # baseline model eval
     model.eval()
@@ -114,20 +125,23 @@ def generate(model, num_words, start_text):
     
     # iterate through and predict the next token
     for token in start_text.split():
-        curr_token, hidden = predict(model, token, hidden)
+        curr_token, hidden = predict(model, token, hidden, use_random)
     
     # add the token
     tokens.append(curr_token)
     
     # predict the subsequent tokens
     for token_num in range(num_words - 1):
-        token, hidden = predict(model, tokens[-1], hidden)
+        token, hidden = predict(model, tokens[-1], hidden, use_random)
         tokens.append(token)
         
     # return the formatted string
     return " ".join(tokens)
 
-def predict(model, tkn, hidden_layer):
+def predict(model, tkn, hidden_layer, use_random):
+
+    global word_to_idx
+    global idx_to_word
 
     # create torch inputs
     x = np.array([[word_to_idx[tkn]]])
@@ -147,11 +161,17 @@ def predict(model, tkn, hidden_layer):
     top_tokens = prob.argsort()[-3:][::-1]
     
     # randomly select one of the three indices
-    selected_index = top_tokens[random.sample([0,1,2], 1)[0]]
+    selected_index = top_tokens[0 if use_random else random.sample([0,1,2], 1)[0]]
 
     # return word and the hidden state
-    return idx_to_word[selected_index], hidden
+    return idx_to_word[str(selected_index)], hidden
 
 @app.route('/generate')
-def generate():
-    return "Hello World!"
+def generate_lyric(methods = ["POST"]):
+
+    start_text = request.json("start_text")
+    censor = request.json("censor")
+    num_words = request.json("num_words")
+    use_random = request.json("random")
+
+    return get_lyric(start_text, censor, num_words, use_random)
