@@ -161,17 +161,17 @@ def predict(model, tkn, hidden_layer, use_random):
     top_tokens = prob.argsort()[-3:][::-1]
     
     # randomly select one of the three indices
-    selected_index = top_tokens[0 if use_random else random.sample([0,1,2], 1)[0]]
+    selected_index = top_tokens[random.sample([0,1,2], 1)[0] if use_random else 0]
 
     # return word and the hidden state
     return idx_to_word[str(selected_index)], hidden
 
-@app.route('/generate')
-def generate_lyric(methods = ["POST"]):
+@app.route('/generate', methods = ["POST"])
+def generate_lyric():
 
-    start_text = request.json("start_text")
-    censor = request.json("censor")
-    num_words = request.json("num_words")
-    use_random = request.json("random")
+    start_text = request.json["start_text"]
+    censor = request.json["censor"]
+    num_words = request.json["num_words"]
+    use_random = request.json["use_random"]
 
     return get_lyric(start_text, censor, num_words, use_random)
