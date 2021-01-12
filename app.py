@@ -16,6 +16,7 @@ from titlecase import titlecase
 
 idx_to_word = json.load( open( "data/idx_to_word.json" ) )
 word_to_idx = json.load( open( "data/word_to_idx.json" ) )
+word_dict = json.load( open("data/word_dict.json" ) )
 
 num_hidden = 256
 num_layers = 4
@@ -91,6 +92,19 @@ model.load_state_dict(torch.load("data/models/model1.pt"))
 
 # load the swear words to censor
 Profanity.load_censor_words()
+
+
+def format_text(text):
+    global word_dict
+
+    words = text.split(" ")
+    for word_index in range(len(words)):
+        words[word_index] = word_dict[words[word_index]]
+
+    if not words[0].isupper():
+        words[0] = words[0].capitalize()
+    
+    return " ".join(words)
 
 def get_lyric(start_text, censor, num_words, use_random):
 
@@ -177,4 +191,4 @@ def generate_lyric():
 
     lyric = get_lyric(start_text, censor, num_words, use_random)
 
-    return "error" if lyric == "error" else titlecase(lyric)
+    return "error" if lyric == "error" else format_text(lyric)
