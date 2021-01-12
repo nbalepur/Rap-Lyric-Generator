@@ -12,6 +12,7 @@ import random
 from better_profanity import profanity as Profanity
 import json
 import numpy as np
+from titlecase import titlecase
 
 idx_to_word = json.load( open( "data/idx_to_word.json" ) )
 word_to_idx = json.load( open( "data/word_to_idx.json" ) )
@@ -96,10 +97,10 @@ def get_lyric(start_text, censor, num_words, use_random):
     global model
 
     # generate the text
-    generated_text = generate(model, num_words, start_text.lower(), use_random).title()
+    generated_text = generate(model, num_words, start_text.lower(), use_random)
 
     # censors the word if necessary
-    return Profanity.censor(generated_text) if censor else generated_text
+    return "error" if generated_text == None else (Profanity.censor(generated_text) if censor else generated_text)
 
 def generate(model, num_words, start_text, use_random):
     
@@ -115,6 +116,9 @@ def generate(model, num_words, start_text, use_random):
     # iterate through and predict the next token
     for token in start_text.split():
         curr_token, hidden = predict(model, token, hidden, use_random)
+
+        if curr_token == None:
+            return None
     
     # add the token
     tokens.append(curr_token)
@@ -122,6 +126,10 @@ def generate(model, num_words, start_text, use_random):
     # predict the subsequent tokens
     for token_num in range(num_words - 1):
         token, hidden = predict(model, tokens[-1], hidden, use_random)
+
+        if token == None:
+            return None
+
         tokens.append(token)
         
     # return the formatted string
@@ -131,6 +139,10 @@ def predict(model, tkn, hidden_layer, use_random):
 
     global word_to_idx
     global idx_to_word
+
+    # error check
+    if tkn not in word_to_idx:
+        return (None, None)
 
     # create torch inputs
     x = np.array([[word_to_idx[tkn]]])
@@ -163,4 +175,6 @@ def generate_lyric():
     num_words = request.json["num_words"]
     use_random = request.json["use_random"]
 
-    return get_lyric(start_text, censor, num_words, use_random)
+    lyric = get_lyric(start_text, censor, num_words, use_random)
+
+    return "error" if lyric == "error" else titlecase(lyric)
