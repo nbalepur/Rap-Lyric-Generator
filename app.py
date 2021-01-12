@@ -86,7 +86,8 @@ class LyricLSTM(nn.Module):
         return hidden
 
 # load the model
-model = jit.load("data/models/model.pt")
+model = LyricLSTM(num_hidden, num_layers, embed_size, drop_prob, lr)
+model.load_state_dict(torch.load("data/models/model1.pt"))
 
 # load the swear words to censor
 Profanity.load_censor_words()
