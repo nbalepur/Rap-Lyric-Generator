@@ -99,6 +99,10 @@ def format_text(text):
 
     words = text.split(" ")
     for word_index in range(len(words)):
+
+        if words[word_index] == "****":
+            continue
+
         words[word_index] = word_dict[words[word_index]]
 
     if not words[0].isupper():
