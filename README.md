@@ -46,8 +46,8 @@ Navigating the website is very simple! To start generating lyrics, you must firs
 
 - **Starting Text**: The beginning of the lyric to be generated
 - **Number of Words**: The number of additional words to generate
-- **Censor Profanity?**: Checkbox to hibetde/show explicit language
-- **Randomize?**: Designates whether the algorithm should select the best fitting word, or a random word from the top 3
+- **Censor Profanity?**: Checkbox to hide/show explicit language
+- **Randomize?**: Designates whether the algorithm should select the best fitting word, or a random word from the top 3 best words
 
 After these fields are tuned to your liking, simply press **Generate** to create the new lyric!
 
