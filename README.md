@@ -70,11 +70,11 @@ This website also has a light / dark mode switch in the upper-left hand corner!
   - [language-check](https://pypi.org/project/language-check/): Grammatical fixes
   - [better-profanity](https://pypi.org/project/better-profanity/): Censoring profanity
   
-- **React**: Frontend library
+- **React**: Front end library
   - [Create-React-App](https://github.com/facebook/create-react-app): Intialization of the site
   - [Ant Design](https://ant.design/): Component library for styling
   
-- **Flask**: Backend API
+- **Flask**: Back end API
 
 - **Heroku**: Website hosting
 
