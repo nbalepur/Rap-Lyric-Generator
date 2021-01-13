@@ -4,8 +4,6 @@ In this project, I use an LSTM (Long Short-Term Memory) Recurrent Neural Network
 
 **Note: The website can be viewed [here](https://kanye-lyric-generator.herokuapp.com/)**
 
-![thumbnail](./demo/thumbnail.PNG)
-
 <br />
 <br />
 
@@ -50,6 +48,8 @@ Navigating the website is very simple! To start generating lyrics, you must firs
 - **Randomize?**: Choose whether the algorithm should select the best fitting word, or a random word from the top 3 best words
 
 After these fields are tuned to your liking, simply press **Generate** to create a new lyric!
+
+![thumbnail](./demo/thumbnail.gif)
 
 <br />
 
