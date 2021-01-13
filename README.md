@@ -55,4 +55,4 @@ After these fields are tuned to your liking, simply press **Generate** to create
 
 This website also has a light / dark mode switch in the upper-left hand corner!
 
-![themes](./demo/themes.PNG)
+![themes](./demo/themes.png)
