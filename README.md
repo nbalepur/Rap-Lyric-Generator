@@ -1,6 +1,6 @@
 # Kanye Lyric Generator
 
-In this project, I attempt to use Recurrent Neural Networks in `Pytorch` for text generation. Specifically, I take a sample of [Kanye West](https://en.wikipedia.org/wiki/Kanye_West) verses to generate new lyrics! Afterwards, the model was deployed to `Flask` via [Heroku](https://www.heroku.com/about) and connected to a simple `React App`
+In this project, I use an LSTM (Long Short-Term Memory) Recurrent Neural Network in `Pytorch` for text generation. Specifically, I take a sample of [Kanye West](https://en.wikipedia.org/wiki/Kanye_West) verses to generate new lyrics! Afterwards, this model was deployed to `Flask` via [Heroku](https://www.heroku.com/about) and connected to a simple `React App`
 
 **Note: The website can be viewed [here](https://kanye-lyric-generator.herokuapp.com/)**
 
