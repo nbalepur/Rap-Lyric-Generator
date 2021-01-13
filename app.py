@@ -12,7 +12,6 @@ import random
 from better_profanity import profanity as Profanity
 import json
 import numpy as np
-from titlecase import titlecase
 
 idx_to_word = json.load( open( "data/idx_to_word.json" ) )
 word_to_idx = json.load( open( "data/word_to_idx.json" ) )
