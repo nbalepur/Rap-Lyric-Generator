@@ -4,6 +4,8 @@ In this project, I use an LSTM (Long Short-Term Memory) Recurrent Neural Network
 
 **Note: The website can be viewed [here](https://kanye-lyric-generator.herokuapp.com/)**
 
+![thumbnail](./demo/thumbnail.PNG)
+
 <br />
 <br />
 
