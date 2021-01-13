@@ -47,9 +47,9 @@ Navigating the website is very simple! To start generating lyrics, you must firs
 - **Starting Text**: The beginning of the lyric to be generated
 - **Number of Words**: The number of additional words to generate
 - **Censor Profanity?**: Checkbox to hide/show explicit language
-- **Randomize?**: Designates whether the algorithm should select the best fitting word, or a random word from the top 3 best words
+- **Randomize?**: Choose whether the algorithm should select the best fitting word, or a random word from the top 3 best words
 
-After these fields are tuned to your liking, simply press **Generate** to create the new lyric!
+After these fields are tuned to your liking, simply press **Generate** to create a new lyric!
 
 <br />
 
@@ -70,7 +70,7 @@ This website was created using the following technologies
   - [language-check](https://pypi.org/project/language-check/): Grammatical fixes
   - [better-profanity](https://pypi.org/project/better-profanity/): Censoring profanity
   
-- **React**: Front-End for the website
+- **React**: Frontend library
   - [Create-React-App](https://github.com/facebook/create-react-app): Intialization of the site
   - [Ant Design](https://ant.design/): Component library for styling
   
@@ -83,7 +83,7 @@ This website was created using the following technologies
 
 ## Acknowledgements
 
-The `Pytorch` background I needed for this project was extremely well-taught form [this data science article](https://www.analyticsvidhya.com/blog/2020/08/build-a-natural-language-generation-nlg-system-using-pytorch/), so thank you for making the information accessibly and easy to follow!
+The `Pytorch` background I needed for this project was extremely well-taught form [this data science article](https://www.analyticsvidhya.com/blog/2020/08/build-a-natural-language-generation-nlg-system-using-pytorch/), so thank you for making the information accessible and easy to follow!
 
 <br />
 <br />
