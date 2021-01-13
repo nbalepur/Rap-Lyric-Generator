@@ -7,7 +7,7 @@ export const dark = {
 
 export const light = {
   headerBG: "#f7f5fb",
-  mainBG: "#e2e1e6",
+  mainBG: "#ebebed",
   primary: "#f77f00",
   text: "black",
 };

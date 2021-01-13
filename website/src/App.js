@@ -22,6 +22,13 @@ class App extends Component {
     theme: dark,
   };
 
+  switchTheme = () => {
+    this.setState({ theme: this.state.theme === dark ? light : dark });
+    this.changeMainColor(
+      this.state.theme === dark ? light.mainBG : dark.mainBG
+    );
+  };
+
   handleAPI = () => {
     let startText = document.getElementById("start-text").value.trim();
 
@@ -43,15 +50,17 @@ class App extends Component {
       use_random: randomize,
     };
 
-    axios.post("http://127.0.0.1:5000/generate", obj).then((response) => {
-      if (response.data === "error") {
-        this.setState({ componentState: "error" });
-        return;
-      }
+    axios
+      .post("https://kanye-lyric-generator.herokuapp.com/generate", obj)
+      .then((response) => {
+        if (response.data === "error") {
+          this.setState({ componentState: "error" });
+          return;
+        }
 
-      this.setState({ lyrics: response.data });
-      this.setState({ componentState: "lyrics" });
-    });
+        this.setState({ lyrics: response.data });
+        this.setState({ componentState: "lyrics" });
+      });
   };
 
   getComponentFromState = () => {
@@ -72,13 +81,18 @@ class App extends Component {
   };
 
   componentDidMount() {
-    document.body.style = "background: " + this.state.theme.mainBG;
+    this.changeMainColor(this.state.theme.mainBG);
   }
+
+  changeMainColor = (col) => {
+    document.body.style = "background: " + col;
+  };
 
   render() {
     return (
       <div>
         <Header
+          switchTheme={this.switchTheme}
           handleAPI={this.handleAPI}
           numWords={this.state.numWords}
           setNumWords={(val) => {

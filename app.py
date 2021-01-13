@@ -1,7 +1,7 @@
 from flask import Flask, request, session
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./website/build', static_url_path='/')
 CORS(app)
 
 import torch
@@ -195,3 +195,7 @@ def generate_lyric():
     lyric = get_lyric(start_text, censor, num_words, use_random)
 
     return "error" if lyric == "error" else format_text(lyric)
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')

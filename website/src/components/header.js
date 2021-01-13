@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Row, Col, Input, Slider, Checkbox, Button } from "antd";
+import { Row, Col, Input, Slider, Checkbox, Button, Switch } from "antd";
 
 import GithubDark from "../images/github-dark.png";
 import GithubLight from "../images/github-light.png";
@@ -16,24 +16,27 @@ class Header extends Component {
         }}
       >
         <br></br>
-        <Row align="right">
-          <Col md={22}></Col>
+        <Row justify="middle">
+          <Col md={1}></Col>
           <Col md={1}>
-            <a
-              href="https://github.com/nbalepur/Kanye-Song-Generator"
-              target="blank"
-              rel="noreferrer"
-            >
-              <img
-                alt="github"
-                class="hover"
-                src={
-                  this.props.theme.text === "white" ? GithubLight : GithubDark
-                }
-                style={{ width: 40, height: "auto" }}
-              ></img>
-            </a>
+            <Switch
+              defaultChecked
+              class="theme-switch"
+              size="large"
+              checkedChildren="Dark"
+              unCheckedChildren="Light"
+              onChange={this.props.switchTheme}
+              style={
+                this.props.theme.text === "white"
+                  ? {
+                      backgroundColor: this.props.theme.primary,
+                      color: "black",
+                    }
+                  : {}
+              }
+            ></Switch>
           </Col>
+          <Col md={21}></Col>
           <Col md={1}>
             <a
               href="https://github.com/nbalepur/Kanye-Song-Generator"
@@ -112,6 +115,10 @@ class Header extends Component {
               handleStyle={{ borderColor: this.props.theme.primary }}
               trackStyle={{
                 backgroundColor: this.props.theme.primary,
+              }}
+              railStyle={{
+                backgroundColor:
+                  this.props.theme.text === "white" ? "white" : "grey",
               }}
             />
           </Col>
