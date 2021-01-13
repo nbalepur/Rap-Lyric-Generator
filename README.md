@@ -46,7 +46,7 @@ Navigating the website is very simple! To start generating lyrics, you must firs
 
 - **Starting Text**: The beginning of the lyric to be generated
 - **Number of Words**: The number of additional words to generate
-- **Censor Profanity?**: Checkbox to hide/show explicit language
+- **Censor Profanity?**: Checkbox to hibetde/show explicit language
 - **Randomize?**: Designates whether the algorithm should select the best fitting word, or a random word from the top 3
 
 After these fields are tuned to your liking, simply press **Generate** to create the new lyric!
@@ -56,3 +56,42 @@ After these fields are tuned to your liking, simply press **Generate** to create
 This website also has a light / dark mode switch in the upper-left hand corner!
 
 ![themes](./demo/themes.png)
+
+<br />
+<br />
+
+## Website Info
+
+This website was created using the following technologies
+
+- **Jupyter Notebook**: Training the Recurrent Neural Network
+  - [Dataset](https://www.kaggle.com/viccalexander/kanyewestverses): Kaggle dataset of Kanye West verses
+  - [Pytorch](https://pytorch.org/): Creating the LSTM model
+  - [language-check](https://pypi.org/project/language-check/): Grammatical fixes
+  - [better-profanity](https://pypi.org/project/better-profanity/): Censoring profanity
+  
+- **React**: Front-End for the website
+  - [Create-React-App](https://github.com/facebook/create-react-app): Intialization of the site
+  - [Ant Design](https://ant.design/): Component library for styling
+  
+- **Flask**: Backend API
+
+- **Heroku**: Website hosting
+
+<br />
+<br />
+
+## Acknowledgements
+
+The `Pytorch` background I needed for this project was extremely well-taught form [this data science article](https://www.analyticsvidhya.com/blog/2020/08/build-a-natural-language-generation-nlg-system-using-pytorch/), so thank you for making the information accessibly and easy to follow!
+
+<br />
+<br />
+
+## Author Info / Contact
+
+All of the code for this resository was written by me, Nishant Balepur. If you have any questions or concerns, feel free to reach out!
+
+- [GitHub](https://www.github.com/nbalepur)
+- [LinkedIn](https://www.linkedin.com/in/nishant-balepur-a03818107/)
+- [Email](mailto:balepur2@illinois.edu)
