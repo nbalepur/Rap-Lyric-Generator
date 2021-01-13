@@ -1,38 +1,31 @@
-.App {
-  text-align: center;
+.ant-spin-dot-item {
+  background-color: transparent;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ant-checkbox .ant-checkbox-inner {
+  background-color: transparent;
+  border-color: #f77f00;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ant-checkbox-disabled .ant-checkbox-inner {
+  background-color: transparent;
+  border-color: #f77f00;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #f77f00;
+  border-color: #f77f00;
 }
 
-.App-link {
-  color: #61dafb;
+#generate-btn:hover {
+  background-color: #d37714 !important;
+  border-color: #d37714 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.hover:hover {
+  transform: scale(1.2);
 }

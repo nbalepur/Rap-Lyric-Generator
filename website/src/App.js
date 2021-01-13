@@ -9,18 +9,24 @@ import Error from "./components/error.js";
 
 import axios from "axios";
 
+import { dark, light } from "./themes.js";
+
+import "./App.css";
+
 class App extends Component {
   state = {
     lyrics: "",
     numWords: 10,
     componentState: "begin",
+
+    theme: dark,
   };
 
   handleAPI = () => {
     let startText = document.getElementById("start-text").value.trim();
 
     if (startText.length === 0) {
-      alert("Please fill out the field 'Starting Text' before generating");
+      alert("Please fill out the field 'Starting Text' before generating text");
       return;
     }
 
@@ -38,8 +44,13 @@ class App extends Component {
     };
 
     axios.post("http://127.0.0.1:5000/generate", obj).then((response) => {
-      this.setState({ componentState: "lyrics" });
+      if (response.data === "error") {
+        this.setState({ componentState: "error" });
+        return;
+      }
+
       this.setState({ lyrics: response.data });
+      this.setState({ componentState: "lyrics" });
     });
   };
 
@@ -50,15 +61,19 @@ class App extends Component {
       return "";
     }
     if (compState === "loading") {
-      return <Loading />;
+      return <Loading theme={this.state.theme} />;
     }
     if (compState === "lyrics") {
-      return <Lyric lyric={this.state.lyrics} />;
+      return <Lyric theme={this.state.theme} lyric={this.state.lyrics} />;
     }
     if (compState === "error") {
-      return <Error />;
+      return <Error theme={this.state.theme} />;
     }
   };
+
+  componentDidMount() {
+    document.body.style = "background: " + this.state.theme.mainBG;
+  }
 
   render() {
     return (
@@ -69,14 +84,15 @@ class App extends Component {
           setNumWords={(val) => {
             this.setState({ numWords: val });
           }}
+          theme={this.state.theme}
         />
         <div>
           <br></br>
           <br></br>
           {this.getComponentFromState()}
+          <br></br>
+          <br></br>
         </div>
-        <br></br>
-        <br></br>
       </div>
     );
   }

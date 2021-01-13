@@ -9,7 +9,15 @@ class Loading extends Component {
       <Row align="center">
         <Col>
           <Space>
-            <h1 style={{ fontSize: 40, marginRight: 20 }}>Generating Text</h1>
+            <h1
+              style={{
+                fontSize: 40,
+                marginRight: 20,
+                color: this.props.theme.text,
+              }}
+            >
+              Generating Text
+            </h1>
             <Spin style={{ marginTop: -10 }} size="large"></Spin>
           </Space>
         </Col>

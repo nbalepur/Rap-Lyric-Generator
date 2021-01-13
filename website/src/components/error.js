@@ -12,11 +12,22 @@ class Error extends Component {
         <Row justify="center">
           <Space justify="center">
             <ExclamationCircleOutlined
-              style={{ fontSize: 75, marginRight: 15 }}
+              style={{
+                fontSize: 75,
+                marginRight: 15,
+                color: this.props.theme.primary,
+              }}
             />{" "}
             <Col>
-              <h1>Error: One of your words in "Starting Text" is invalid</h1>
-              <h1 style={{ marginTop: -15 }}>
+              <h1 style={{ color: this.props.theme.text }}>
+                <span style={{ color: this.props.theme.primary }}>Error</span>:
+                One of your words in{" "}
+                <span style={{ color: this.props.theme.primary }}>
+                  Starting Text
+                </span>{" "}
+                is invalid
+              </h1>
+              <h1 style={{ marginTop: -15, color: this.props.theme.text }}>
                 Please try again with more common words
               </h1>
             </Col>
