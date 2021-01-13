@@ -62,7 +62,7 @@ This website also has a light / dark mode switch in the upper-left hand corner!
 
 ## Website Info
 
-This website was created using the following technologies
+[This website](https://kanye-lyric-generator.herokuapp.com/) was created using the following technologies:
 
 - **Jupyter Notebook**: Training the Recurrent Neural Network
   - [Dataset](https://www.kaggle.com/viccalexander/kanyewestverses): Kaggle dataset of Kanye West verses
