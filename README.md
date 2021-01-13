@@ -1,12 +1,16 @@
 # Kanye Lyric Generator
 
-In this project, I attempt to use Recurrent Neural Networks in `Pytorch` for text generation. Specifically, I take a data sample of [Kanye West](https://en.wikipedia.org/wiki/Kanye_West) verses to generate new lyrics! Afterwards, the model deployed to `Flask` via [Heroku](https://www.heroku.com/about) and connected to a simple `React App`
+In this project, I attempt to use Recurrent Neural Networks in `Pytorch` for text generation. Specifically, I take a sample of [Kanye West](https://en.wikipedia.org/wiki/Kanye_West) verses to generate new lyrics! Afterwards, the model was deployed to `Flask` via [Heroku](https://www.heroku.com/about) and connected to a simple `React App`
 
 **Note: The website can be viewed [here](https://kanye-lyric-generator.herokuapp.com/)**
 
+![thumbnail](./demo/thumbnail.PNG)
+
+<br />
 <br />
 
 ## Getting Started
+
 To get this project running on your machine, follow the instructions below
 
 ### Jupyter Notebook
@@ -35,3 +39,20 @@ This will open up the website in locally in your default browser
 
 <br />
 <br />
+
+## Website User Guide
+
+Navigating the website is very simple! To start generating lyrics, you must first fill out the following fields:
+
+- **Starting Text**: The beginning of the lyric to be generated
+- **Number of Words**: The number of additional words to generate
+- **Censor Profanity?**: Checkbox to hide/show explicit language
+- **Randomize?**: Designates whether the algorithm should select the best fitting word, or a random word from the top 3
+
+After these fields are tuned to your liking, simply press **Generate** to create the new lyric!
+
+<br />
+
+This website also has a light / dark mode switch in the upper-left hand corner!
+
+![themes](./demo/themes.PNG)
